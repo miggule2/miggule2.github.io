@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="김동현의 관심 분야와 음식 이미지 분류 프로젝트 SnapMeal을 소개합니다." />
+    <title>김동현 포트폴리오</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23fff'/%3E%3Cpath d='M14 14h36v36H14z' fill='none' stroke='%23222' stroke-width='4'/%3E%3C/svg%3E"
+    />
+    <style>
+      :root {
+        --paper: #ffffff;
+        --ink: #222222;
+        --muted: #666666;
+        --line: #b9b9b9;
+        --soft: #f4f4f4;
+        --link: #1d4ed8;
+        --link-hover: #1e40af;
+        --max: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family: "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      a:focus-visible {
+        outline: 3px solid var(--ink);
+        outline-offset: 3px;
+      }
+
+      .container {
+        width: min(calc(100% - 40px), var(--max));
+        margin: 0 auto;
+      }
+
+      header {
+        border-bottom: 2px solid var(--ink);
+      }
+
+      header .container {
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .logo {
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      nav {
+        display: flex;
+        gap: 22px;
+        font-weight: 700;
+      }
+
+      nav a {
+        text-underline-offset: 5px;
+      }
+
+      section {
+        padding: 76px 0;
+        border-bottom: 2px solid var(--ink);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 720px;
+        margin-bottom: 22px;
+        font-size: clamp(2.5rem, 5vw, 4.6rem);
+        line-height: 1.12;
+        letter-spacing: -0.055em;
+      }
+
+      h2 {
+        margin-bottom: 18px;
+        font-size: clamp(1.9rem, 3.6vw, 3rem);
+        line-height: 1.2;
+        letter-spacing: -0.04em;
+      }
+
+      h3 {
+        margin-bottom: 12px;
+        font-size: 1.22rem;
+      }
+
+      .section-label {
+        display: inline-block;
+        margin-bottom: 16px;
+        padding: 4px 9px;
+        border: 1px solid var(--ink);
+        font-size: 0.78rem;
+        font-weight: 800;
+      }
+
+      .section-intro {
+        max-width: 730px;
+        margin-bottom: 38px;
+        color: var(--muted);
+      }
+
+      .hero {
+        min-height: calc(100vh - 65px);
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-inner {
+        padding: 54px 0;
+      }
+
+      .hero-copy {
+        max-width: 740px;
+        margin-bottom: 30px;
+        color: var(--muted);
+        font-size: 1.08rem;
+      }
+
+      .profile-lines {
+        max-width: 740px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 28px;
+        margin-bottom: 34px;
+        padding: 18px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 2px solid var(--line);
+      }
+
+      .profile-lines span {
+        color: var(--muted);
+      }
+
+      .profile-lines strong {
+        color: var(--ink);
+      }
+
+      .button {
+        min-height: 48px;
+        padding: 11px 19px;
+        border: 1px solid var(--ink);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--ink);
+        color: var(--paper);
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .project-head {
+        display: grid;
+        grid-template-columns: 1fr 310px;
+        gap: 50px;
+        align-items: end;
+        margin-bottom: 38px;
+      }
+
+      .project-head p {
+        max-width: 720px;
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .meta {
+        margin: 0;
+      }
+
+      .meta div {
+        display: grid;
+        grid-template-columns: 90px 1fr;
+        gap: 12px;
+        padding: 11px 0;
+        border-bottom: 2px solid var(--line);
+      }
+
+      .meta dt {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      .meta dd {
+        margin: 0;
+        color: var(--muted);
+        font-weight: 400;
+      }
+
+      .flow-block {
+        margin-bottom: 46px;
+        padding: 28px;
+        border: 2px solid var(--ink);
+        background: var(--soft);
+      }
+
+      .flow-title {
+        margin-bottom: 22px;
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(7, auto);
+        gap: 12px;
+        align-items: center;
+      }
+
+      .flow-step {
+        min-height: 116px;
+        padding: 16px;
+        border: 1px solid var(--ink);
+        background: var(--paper);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .flow-step small {
+        color: var(--muted);
+      }
+
+      .flow-step.future {
+        border-style: dashed;
+      }
+
+      .arrow {
+        font-size: 1.35rem;
+        text-align: center;
+      }
+
+      .role-box {
+        padding: 24px;
+        border: 1px solid var(--line);
+      }
+
+      .role-box ul {
+        margin: 0 0 26px;
+        padding-left: 22px;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag {
+        padding: 6px 10px;
+        border: 1px solid var(--ink);
+        font-size: 0.82rem;
+      }
+
+      .analysis {
+        margin-top: 48px;
+        padding-top: 40px;
+        border-top: 1px solid var(--line);
+      }
+
+      .problem-solution {
+        display: grid;
+        grid-template-columns: 1fr 60px 1fr;
+        gap: 12px;
+        align-items: stretch;
+      }
+
+      .analysis-box {
+        padding: 24px;
+        border: 1px solid var(--line);
+        background: var(--soft);
+      }
+
+      .analysis-box p {
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .analysis-arrow {
+        display: grid;
+        place-items: center;
+        font-size: 1.5rem;
+      }
+
+      .next-step {
+        padding: 24px;
+        border: 1px solid var(--ink);
+      }
+
+      .next-step-title {
+        margin-top: 30px;
+      }
+
+      .next-step p {
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .about-copy {
+        max-width: 750px;
+      }
+
+      .about-info {
+        margin-top: 26px;
+        border-top: 1px solid var(--line);
+      }
+
+      .about-info div {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 18px;
+        padding: 13px 0;
+        border-bottom: 2px solid var(--line);
+      }
+
+      footer {
+        padding: 38px 0;
+      }
+
+      footer p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .back-to-top {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 20;
+        width: 52px;
+        height: 52px;
+        border: 1px solid var(--ink);
+        background: var(--ink);
+        color: var(--paper);
+        display: grid;
+        place-items: center;
+        font-size: 0.8rem;
+        font-weight: 800;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .back-to-top:hover,
+      .back-to-top:focus-visible {
+        background: var(--paper);
+        color: var(--ink);
+      }
+
+      @media (max-width: 840px) {
+        .project-head {
+          grid-template-columns: 1fr;
+        }
+
+        .flow {
+          grid-template-columns: 1fr;
+        }
+
+        .arrow,
+        .analysis-arrow {
+          transform: rotate(90deg);
+        }
+
+        .problem-solution {
+          grid-template-columns: 1fr;
+        }
+
+      }
+
+      @media (max-width: 580px) {
+        .container {
+          width: min(calc(100% - 28px), var(--max));
+        }
+
+        nav {
+          gap: 12px;
+          font-size: 0.87rem;
+        }
+
+        section {
+          padding: 58px 0;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+
+        .profile-lines {
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        .flow-block {
+          padding: 18px;
+        }
+
+        .about-info div {
+          grid-template-columns: 1fr;
+          gap: 4px;
+        }
+
+        .back-to-top {
+          right: 14px;
+          bottom: 14px;
+          width: 48px;
+          height: 48px;
+        }
+
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a class="logo" href="#top">PORTFOLIO</a>
+        <nav aria-label="주요 메뉴">
+          <a href="#project">프로젝트</a>
+          <a href="#about">소개</a>
+          <a href="https://github.com/miggule2">GitHub</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-inner">
+          <h1>안녕하세요.<br />김동현입니다.</h1>
+          <p class="hero-copy">
+            <strong>AI</strong>와 <strong>Computer Vision</strong>에 관심이 있는 컴퓨터공학 전공 학생입니다. <strong>의료 영상 분석</strong>을 통해
+            실제 세상에 도움이 되는 기술을 만드는 연구자 및 개발자를 목표로 합니다.
+          </p>
+          <div class="profile-lines">
+            <span><strong>닉네임</strong> 껄래</span>
+            <span><strong>전공</strong> 컴퓨터공학</span>
+            <span><strong>관심 분야</strong> AI · 컴퓨터 비전</span>
+            <span><strong>희망 분야</strong> AI 모델 연구·개발 / 의료 영상 분석</span>
+          </div>
+          <a class="button" href="#project">대표 프로젝트 보기 <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+
+      <section id="project">
+        <div class="container">
+          <span class="section-label">대표 프로젝트</span>
+          <div class="project-head">
+            <div>
+              <h2>SnapMeal</h2>
+              <p>
+                사용자가 음식 사진을 업로드하면 MobileNet 기반 <strong>이미지 분류 모델이 음식 종류를
+                예측</strong>하고, <strong>공공 영양성분 API</strong>와 연결해 해당 음식의 영양 정보 제공 및 <strong>LLM 영양 추천 기능</strong>까지 확장한 서비스
+              </p>
+            </div>
+            <dl class="meta">
+              <div>
+                <dt>분야</dt>
+                <dd>소프트웨어 개발 및 머신러닝</dd>
+              </div>
+              <div>
+                <dt>팀 규모</dt>
+                <dd>2인 프로젝트</dd>
+              </div>
+              <div>
+                <dt>담당</dt>
+                <dd>백엔드 · ML 모델</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="flow-block">
+            <h3 class="flow-title">프로젝트 전체 흐름</h3>
+            <div class="flow" role="img" aria-label="음식 이미지 업로드부터 LLM 추천까지의 프로젝트 흐름">
+              <div class="flow-step">
+                <small>01 · INPUT</small>
+                <strong>음식 이미지 업로드</strong>
+              </div>
+              <div class="arrow" aria-hidden="true">→</div>
+              <div class="flow-step">
+                <small>02 · MODEL</small>
+                <strong>MobileNet 이미지 분류</strong>
+              </div>
+              <div class="arrow" aria-hidden="true">→</div>
+              <div class="flow-step">
+                <small>03 · API</small>
+                <strong>영양성분 정보 연결</strong>
+              </div>
+              <div class="arrow" aria-hidden="true">→</div>
+              <div class="flow-step">
+                <small>04 · EXPANSION</small>
+                <strong>LLM 기반 영양 추천</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="role-box">
+            <h3>맡은 일</h3>
+            <ul>
+              <li>데이터셋 전처리와 학습 클래스 선정</li>
+              <li>MobileNet 전이 학습과 추론 기능 구현</li>
+              <li>분류 결과와 영양성분 API 연동</li>
+            </ul>
+            <h3>사용 기술</h3>
+            <div class="tags">
+              <span class="tag">Backend</span>
+              <span class="tag">Public API</span>
+              <span class="tag">Image Classification</span>
+              <span class="tag">Transfer Learning</span>
+              <span class="tag">MobileNet</span>
+            </div>
+          </div>
+
+          <div class="analysis">
+            <h3>문제 정의와 해결 방법</h3>
+            <div class="problem-solution">
+              <div class="analysis-box">
+                <strong>문제</strong>
+                <p>
+                  음식 사진을 올리면 영양 정보를 조회할 수 있는 서비스를 만들고자 했습니다. 과제 기간과 학습 장비가 제한적이어서 전체 음식 클래스를 학습하기 어려웠습니다.
+                </p>
+              </div>
+              <div class="analysis-arrow" aria-hidden="true">→</div>
+              <div class="analysis-box">
+                <strong>해결</strong>
+                <p>
+                  핵심 기능 검증에 필요한 음식 클래스를 선정하고, 사전 학습된 <strong>MobileNet</strong>에 <strong>전이 학습</strong>을 적용했습니다.
+                </p>
+              </div>
+            </div>
+            <h3 class="next-step-title">구현 결과</h3>
+            <div class="next-step">
+              <p>사진에서 예측한 음식 종류를 공공 영양성분 API에 연결해 영양 정보를 보여주고, LLM 기반 영양 추천 기능을 추가했습니다.</p>
+            </div>
+            <h3 class="next-step-title">이후 발전 방향</h3>
+            <div class="next-step">
+              <p>
+                ResNet 등 다양한 모델과 성능·연산량을 비교하고, 클래스 불균형과 대규모 데이터의
+                효율적인 학습 방법을 적용해 분류 범위를 확장
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="container">
+          <span class="section-label">소개</span>
+          <h2>About Me</h2>
+          <div class="about-copy">
+            <p>
+              전공 수업에서 <strong>Computer Vision</strong>을 처음 접한 뒤, 이미지 분류 실습과 머신러닝 프로젝트를
+              수행하며 눈에 보이는 정보를 컴퓨터가 분석할 수 있다는 점에 흥미를 느꼈습니다.
+            </p>
+            <p>
+              현재는 <strong>의료 영상의 정규화, 노이즈 제거와 같은 전처리 방법</strong>을 학습하고 있습니다.
+            </p>
+            <div class="about-info">
+              <div>
+                <strong>관심 분야</strong>
+                <span>AI 모델 · 컴퓨터 비전 · 의료 영상 분석</span>
+              </div>
+              <div>
+                <strong>요즘 배우는 것</strong>
+                <span>의료 영상 정규화 · 노이즈 제거 · 전처리 방법</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <button
+      class="back-to-top"
+      type="button"
+      aria-label="페이지 맨 위로 이동"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      TOP
+    </button>
+
+    <footer>
+      <div class="container">
+        <p>김동현 포트폴리오</p>
+      </div>
+    </footer>
+  </body>
+</html>
